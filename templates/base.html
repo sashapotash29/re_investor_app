@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+	<head>
+		<title> RealVest </title>
+		<link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.css">
+		<link rel="stylesheet" href="../static/css/base.css">
+		<link rel="stylesheet" href="../static/css/login.css">
+
+	</head>
+
+	<body>
+	<div class="wrapEverything">
+		<div class="row navPortion">
+			<div class="col s1"></div>
+
+			<div class="col s10 middleNav">
+				<div class="row navBar">
+					<div class="col s3">REALVEST (LOGO)</div>
+					<div class="col s3">SEARCH BAR</div>
+<!-- 							<input id="searchBar" type="text" placeholder="Listing" label="active">  -->
+					<div class="col s3 navOption">
+						<a href="" class="aTagNav">ACCOUNT</a>
+					</div>
+					<div class="col s3 navOption">
+						<a href="" class="aTagNav">LOGOUT</a>
+					</div>
+				</div>
+	    	</div>
+
+			<div class="col s1"></div>
+    	</div>
+
+		<div class="row bodyContent">
+			<div class="col s1 mainStruct sidePortion">SIDE</div>
+			<div class="col s10 mainStruct">MAIN
+
+			{% block body %}
+			{% endblock %}
+
+			</div>
+			<div class="col s1 mainStruct sidePortion">SIDE</div>
+    	</div>
+	</div>   
+
+
+
+
+
+
+
+	</body>
+
+
+</html
