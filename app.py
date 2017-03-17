@@ -20,6 +20,13 @@ db = SQLAlchemy(app)
 
 # ROUTES
 
+@app.route('/', methods=['GET'])
+def login_page():
+	return render_template('login.html')
+
+
+
+
 @app.route('/onlyforprops', methods=['POST'])
 def save_to_db():
 	property_list = json.loads(request.data)['result']
@@ -46,28 +53,7 @@ def save_to_db():
 		print('property added ' + prop['address'])
 	print('DONE ADDING PROPERTIES')
 
-
-
-	# # SCHEMA
-	# id = db.Column(db.Integer, primary_key=True)
-	# building_name = db.Column(db.String(40), primary_key=True)
-	# date_updated = db.Column(db.Date)
-	# sq_ft = db.Column(db.Float, primary_key=True)
-	# bedrooms = db.Column(db.Float, primary_key=True)
-	# bathrooms = db.Column(db.Float, primary_key=True)
-	# address = db.Column(db.String(100))
-	# city = db.Column(db.String(30))
-	# state = db.Column(db.String(20))
-	# zipcode = db.Column(db.String(30))
-	# past_price = db.Column(db.Float)
-	# current_price = db.Column(db.Float)
-	# status = db.Column(db.String)
-
-
-
-
-
-
+	return "Done"
 
 
 if __name__ == "__main__":
