@@ -4,11 +4,11 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 # IMPORTS END
 
-db.drop_all()
+
 
 class User(db.Model):
-	def __init__(self,id,username,password,first_name,last_name, creation_date):
-		self.id = id
+	__tablename__="user"
+	def __init__(self,username,password,first_name,last_name, creation_date):
 		self.username = username
 		self.password = password
 		self.first_name = first_name
@@ -27,26 +27,33 @@ class User(db.Model):
 
 class Property(db.Model):
 
-	def __init__(self,id,building_name,sq_ft,bedrooms,bathrooms, address, city,zipcode,past_price,current_price, status):
-		self.id = id
+	def __init__(self,building_name, date_updated, coordinates, sq_ft,bedrooms,bathrooms, address, city,state,zipcode,past_price,current_price, status):
 		self.building_name = building_name
+		self.date_updated = date_updated
+		self.coordinates = coordinates
 		self.sq_ft = sq_ft
 		self.bedrooms = bedrooms
 		self.bathrooms = bathrooms
 		self.address = address
 		self.city = city
+		self.state = state
 		self.zipcode = zipcode 
+		self.past_price = past_price
+		self.current_price = current_price
 		self.status =  status
 		
 		
 	# SCHEMA
 	id = db.Column(db.Integer, primary_key=True)
-	building_name = db.Column(db.String(40), primary_key=True)
-	sq_ft = db.Column(db.Float, primary_key=True)
-	bedrooms = db.Column(db.Float, primary_key=True)
-	bathrooms = db.Column(db.Float, primary_key=True)
+	building_name = db.Column(db.String(40))
+	date_updated = db.Column(db.Date)
+	coordinates = db.Column(db.String(50))
+	sq_ft = db.Column(db.Float)
+	bedrooms = db.Column(db.Float)
+	bathrooms = db.Column(db.Float)
 	address = db.Column(db.String(100))
 	city = db.Column(db.String(30))
+	state = db.Column(db.String(20))
 	zipcode = db.Column(db.String(30))
 	past_price = db.Column(db.Float)
 	current_price = db.Column(db.Float)
@@ -56,8 +63,7 @@ class Property(db.Model):
 
 class Reference(db.Model):
 	__tablename__ = "reference"
-	def __init__(self,id,user_id,prop_id,bedrooms,investment_value):
-		self.id = id
+	def __init__(self,user_id,prop_id,bedrooms,investment_value):
 		self.user_id = user_id
 		self.prop_id = prop_id
 		self.mortgage_id = mortgage_id
@@ -73,8 +79,7 @@ class Reference(db.Model):
 
 class Mortgage(db.Model):
 	__tablename__ = "mortgage"
-	def __init__(self,id,lender,total_amount,interest_rate,date_issued):
-		self.id = id
+	def __init__(self,lender,total_amount,interest_rate,date_issued):
 		self.lender = lender
 		self.total_amount = total_amount
 		self.interest_rate = interest_rate
@@ -87,8 +92,8 @@ class Mortgage(db.Model):
 	interest_rate = db.Column(db.Float)
 	date_issued = db.Column(db.Date)
 
-
-db.create_all()
+# db.drop_all()
+# db.create_all()
 
 print("Database has been CREATED")
 
