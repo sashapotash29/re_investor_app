@@ -2,6 +2,8 @@
 from config import DevConfig
 from flask import Flask, render_template, request, session
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from datetime import datetime, date
 import json
 from models import *
 
@@ -15,6 +17,10 @@ app = Flask(__name__)
 app.config.from_object("config.DevConfig")
 
 db = SQLAlchemy(app)
+
+bcrypt = Bcrypt(app)
+
+
 
 
 
@@ -54,6 +60,57 @@ def save_to_db():
 	print('DONE ADDING PROPERTIES')
 
 	return "Done"
+
+
+@app.route("/home", methods=['GET', 'POST'])
+def home_or_login():
+	if request.method == 'GET':
+		return render_template('home.html')
+	if request.method == 'POST':
+		prov_username = request.form['existUsername']
+		prov_password = request.form['existPassword']
+		user_result = User.query.filter_by(username=prov_username).first()
+		if user_result:
+			auth = bcrypt.check_password_hash(user_result.password,prov_password)
+			if auth:
+				return render_template('home.html')
+			else:
+				return render_template('login.html', 
+							lError_message = "Login Credentials were incorrect. Please Try Again."
+					)
+		else:
+			return render_template('login.html', 
+							lError_message = "Login Credentials were incorrect. Please Try Again."
+					)
+
+@app.route("/register", methods=['GET','POST'])
+def register_new_account():
+	if request.method=='POST':
+		new_username = request.form['newUsername']
+		result = User.query.filter_by(username=new_username).first()
+		if result:
+			return render_template('login.html',
+
+						rError_message="The Username you have provided is already taken.")
+		else:
+			hashed_password = bcrypt.generate_password_hash(request.form['newPassword']).decode('utf-8')
+			new_user = User(new_username,hashed_password,request.form['newFirstName'],request.form['newLastName'],date.today())
+			db.session.add(new_user)
+			db.session.commit()
+			return render_template('login.html',
+					lError_message = "Try to log into your new account!"
+				)
+
+	if request.method=='GET':
+		return render_template('login.html',
+
+						lError_message="Please Login to access content"
+
+			)
+	
+
+
+
 
 
 if __name__ == "__main__":

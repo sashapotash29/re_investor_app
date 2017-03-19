@@ -1,13 +1,13 @@
 # IMPORTS START
 from app import db
 from flask_sqlalchemy import SQLAlchemy 
-from datetime import datetime
+from datetime import datetime, date
 # IMPORTS END
 
 
 
 class User(db.Model):
-	__tablename__="user"
+	__tablename__="users"
 	def __init__(self,username,password,first_name,last_name, creation_date):
 		self.username = username
 		self.password = password
@@ -22,7 +22,7 @@ class User(db.Model):
 	password = db.Column(db.String(200))
 	first_name = db.Column(db.String(40))
 	last_name = db.Column(db.String(40))
-	creation_date = db.Column(db.String(20), default = datetime.today())
+	creation_date = db.Column(db.Date, default = date.today())
 
 
 class Property(db.Model):
