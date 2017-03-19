@@ -1,22 +1,37 @@
 {% extends "base.html" %}
 
-{% block content %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/home.css">
+
+{% endblock %}
 
 
-	<div class="card">
-            <div class="card-image">
-              <img src="images/sample-1.jpg">
-              <span class="card-title">Card Title</span>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
+{% block body %}
+
+
+	{% for property in properties %}
+	
+<div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">{{property.address}} {{property.city}} {{property.state}} {{property.zipcode}}</span>
+              <ul>
+              	<li>Bathrooms: {{property.bathrooms}} </li>
+              	<li> Bedrooms: {{property.bedrooms}}</li>
+              	<li>Square Footage: {{property.sq_ft}}ft </li>
+              	<li> Price: ${{property.current_price}}</li>
+              </ul>
             </div>
             <div class="card-action">
               <a href="#">This is a link</a>
-           	</div>
-    </div>
+              <a href="#">This is a link</a>
+            </div>
+          </div>
+
+    {% endfor %}
+   
+
+{% endblock %}
 
 
 
-{% endblock}

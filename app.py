@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from datetime import datetime, date
 import json
+import random
 from models import *
 
 
@@ -21,6 +22,17 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
 
+
+
+def grab_home_props():
+	properties = []
+	random_list= random.sample(range(1, 60), 6)
+	for index in range(0,len(random_list)):
+		prop = Property.query.filter_by(id=random_list[index]).first()
+		print(prop.address)
+		properties.append(prop)
+	print(properties)
+	return properties
 
 
 
@@ -73,7 +85,9 @@ def home_or_login():
 		if user_result:
 			auth = bcrypt.check_password_hash(user_result.password,prov_password)
 			if auth:
-				return render_template('home.html')
+				properties = grab_home_props()
+				return render_template('home.html',
+					properties = properties)
 			else:
 				return render_template('login.html', 
 							lError_message = "Login Credentials were incorrect. Please Try Again."
