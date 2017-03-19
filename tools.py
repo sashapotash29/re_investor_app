@@ -84,10 +84,16 @@ for obj in prop_list:
 						sq_ft = principal_dict['finishedSqFt']
 					else:
 						sq_ft = '0'
-					bedrooms = principal_dict['bedrooms']
-					print(bedrooms)
-					bathrooms = principal_dict['bathrooms']
-					print(bathrooms)
+					if 'bedrooms' in key_list:
+						bedrooms = principal_dict['bedrooms']
+					else:
+						bedrooms = '0'
+					print('Bathrooms: ' + bedrooms)
+					if 'bedrooms' in key_list:
+						bathrooms = principal_dict['bathrooms']
+					else:
+						bathrooms = '0'
+					print('Bathrooms: '  + bathrooms)
 					zestimate_dict = principal_dict['zestimate']
 					price = zestimate_dict['amount']['#text']
 					date = datetime.strptime(zestimate_dict['last-updated'],'%m/%d/%Y').date()

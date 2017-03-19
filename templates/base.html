@@ -4,7 +4,7 @@
 		<title> RealVest </title>
 		<link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.css">
 		<link rel="stylesheet" href="../static/css/base.css">
-		<link rel="stylesheet" href="../static/css/login.css">
+		{% block css %} {% endblock %}
 
 	</head>
 
@@ -32,7 +32,7 @@
 
 		<div class="row bodyContent">
 			<div class="col s1 mainStruct sidePortion">SIDE</div>
-			<div class="col s10 mainStruct">MAIN
+			<div class="col s10 mainStruct">
 
 			{% block body %}
 			{% endblock %}
