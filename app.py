@@ -7,6 +7,7 @@ from datetime import datetime, date
 import json
 import random
 from models import *
+from uhoh import uhoh
 
 
 
@@ -123,7 +124,18 @@ def register_new_account():
 			)
 	
 
+@app.route("/property/<property_info>", methods=['GET'])
+def show_single_property_page(property_info):
+	print(property_info)
+	result = Property.query.filter_by(id=int(property_info)).first()
+	if result:
+		return render_template('singleProperty.html',
+			property = result)
+	else:
+		return render_template('home.html',
+			properties = grab_home_props())
 
+	
 
 
 
