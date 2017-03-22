@@ -1,0 +1,19 @@
+.hypotheticalProfilePic{
+
+	border: dashed grey;
+	background-color: lightyellow;
+	height: 50vh;
+	text-align: center;
+	vertical-align: center;
+
+
+}
+
+.propertyRightSide{
+	height:50vh;
+	overflow-y: auto;
+ 	white-space: nowrap;
+
+
+}
+

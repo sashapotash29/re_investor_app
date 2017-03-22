@@ -10,7 +10,6 @@
 
 .mainStruct{
 
-	border: dashed lightblue;
 	height:100vh;
 	margin:0;
 	padding:0;
@@ -20,7 +19,8 @@
 
 .sidePortion{
 
-	background-color: beige;
+	background-color: lightgrey;
+	border:none;
 
 
 
@@ -65,6 +65,24 @@
 	background-color: white;
 	color:lightblue;
 
+
+
+
+}
+
+.logoArea{
+	margin:auto;
+	padding:0;
+	height:100%;
+	text-align: center;
+	vertical-align: center;
+
+}
+
+#logoRealVest{
+	height:100%;
+	font-size: 8vh;
+	color: white;
 
 
 
