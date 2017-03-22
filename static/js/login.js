@@ -10,3 +10,5 @@ for(var i=0; i<=listNavItems.length-1; i++){
 
 
 };
+
+var searchForm = document.getElementsByClassName('searchBarFormArea')[0].style.display="none"

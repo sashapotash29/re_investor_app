@@ -172,6 +172,30 @@ def register_new_account():
 
 			)
 	
+@app.route('/search', methods=['POST'])
+def search():
+	search_word = request.form['searchBarInput']
+	if "manhattan" in search_word.lower():
+		properties = Property.query.filter_by(city = "New York").all()
+		print(properties)
+		return render_template('home.html',
+		properties = properties)
+	if "brooklyn" in search_word.lower():
+		properties = Property.query.filter_by(city = "Brooklyn").all()
+		print(properties)
+		return render_template('home.html',
+		properties = properties)
+	if "jersey" in search_word.lower():
+		properties = Property.query.filter_by(city = "Jersey City").all()
+		print(properties)
+		return render_template('home.html',
+		properties = properties)
+	else:
+		return render_template('home.html',
+		properties = grab_home_props())
+	
+
+
 
 @app.route("/property/<property_info>", methods=['GET'])
 def show_single_property_page(property_info):
@@ -223,7 +247,9 @@ def show_account_page():
 			properties = properties)
 	if request.method == "POST":
 		new_first_name = request.form['firstNameField']
+		print(new_first_name)
 		new_last_name = request.form['lastNameField']
+		print(new_last_name)
 		the_user = User.query.filter_by(id=session['user_id']).first()
 		the_user.first_name = new_first_name
 		the_user.last_name = new_last_name
