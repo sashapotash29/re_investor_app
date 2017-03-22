@@ -9,19 +9,48 @@
 
 
 	<div class="row property">
-		<div class="col s4 propertyInfoArea googleMaps">
+		<div class="col s4 propertyInfoArea googleMaps" data-lat="{{lat}}" data-long="{{long}}">
 			GOOGLE MAPS
 		</div>
 		<div class="col s8 propertyInfoArea">
-			<ul>
-				<li> Bedrooms </li>
-				<li> Bathrooms </li>
-				<li> Price </li>
-				<li> Square Footage </li>
+			<ul id = "propertyInfoUl" class="singlePagePropInfo" data-id={{property.id}}>
+				<li> Address: {{property.address}}, {{property.city}}, {{property.state}}, {{property.zipcode}} </li>
+				{% if property.bedrooms == 0 %}
+				<li> Bedrooms: Information Unavailabe </li>
+				{% else %}
+				<li> Bedrooms: {{property.bedrooms}} </li>
+				{% endif %}
+				{% if property.bathrooms == 0 %}
+				<li> Bathrooms: Information Unavailabe </li>
+				{% else %}
+				<li> Bathrooms: {{property.bathrooms}} </li>
+				{% endif %}
+				<li> Price: ${{property.current_price}} </li>
+				{% if property.sq_ft == 0 %}
+				<li> Square Footage: Information Unavailabe </li>
+				{% else %}
+				<li> Square Footage: {{property.sq_ft}} </li>
+				{% endif %}
 			</ul>
-			
 		</div>
 
+	</div>
+	<div class="row buttonsSP">
+		<div class="col s6 buttonsSingleProperty">
+			<input class = "saveInvest" type='submit' value="Save" id="saveButton">
+		</div>
+		<div class="col s6 buttonsSingleProperty">
+			<input class = "saveInvest" type='submit' value="Invest" id="investButton">
+		</div>
+	</div>
+	<div class="row investFormArea">
+		<div class="col s6 formArea"></div>
+		<div class="col s6 formArea">
+			<form action="/invest_property/{{property.id}}" method="POST" id="formToInvest">
+				<input type="text" placeholder="Insert amount you wish to invest" name="investmentAmount">
+				<input type="submit" Value= "Invest">
+			</form>
+		</div>
 	</div>
 
 
@@ -29,4 +58,10 @@
 
 
 	
+{% endblock %}
+
+{% block js %}
+<script src="https://maps.googleapis.com/maps/api/js?key={{uhoh}}&callback=initMap"
+    async defer></script>
+<script src="../static/js/singleproperty.js"></script>
 {% endblock %}

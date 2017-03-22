@@ -15,14 +15,17 @@
 
 			<div class="col s10 middleNav">
 				<div class="row navBar">
-					<div class="col s3">REALVEST (LOGO)</div>
+					<div class="col s3 logoArea">
+						<a href="/home" id="logoRealVest" > REALVEST
+						</a>
+					</div>
 					<div class="col s3">SEARCH BAR</div>
 <!-- 							<input id="searchBar" type="text" placeholder="Listing" label="active">  -->
 					<div class="col s3 navOption">
-						<a href="" class="aTagNav">ACCOUNT</a>
+						<a href="/account" class="aTagNav">ACCOUNT</a>
 					</div>
 					<div class="col s3 navOption">
-						<a href="" class="aTagNav">LOGOUT</a>
+						<a href="/logout" class="aTagNav">LOGOUT</a>
 					</div>
 				</div>
 	    	</div>
@@ -35,7 +38,7 @@
 			<div class="col s10 mainStruct">
 
 			{% block body %}
-			
+
 			{% endblock %}
 
 			</div>
@@ -47,7 +50,9 @@
 
 
 
-
+	{% block js %}
+	<script src="../static/js/base.js"></script>
+	{% endblock %}
 
 	</body>
 

@@ -123,7 +123,7 @@ for obj in prop_list:
 					print("REQUEST TIME")
 					print('')
 
-					r = requests.post('http://127.0.0.1:5000/onlyforprops',data=json.dumps(final_product))
+					r = requests.post('http://127.0.0.1:8000/onlyforprops',data=json.dumps(final_product))
 					print('')
 					print("REQUEST PROCESSED")
 					print('')

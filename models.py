@@ -2,6 +2,7 @@
 from app import db
 from flask_sqlalchemy import SQLAlchemy 
 from datetime import datetime, date
+
 # IMPORTS END
 
 
@@ -63,7 +64,7 @@ class Property(db.Model):
 
 class Reference(db.Model):
 	__tablename__ = "reference"
-	def __init__(self,user_id,prop_id,bedrooms,investment_value):
+	def __init__(self,user_id,prop_id,mortgage_id,investment_value):
 		self.user_id = user_id
 		self.prop_id = prop_id
 		self.mortgage_id = mortgage_id

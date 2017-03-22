@@ -1,3 +1,4 @@
+/*PROPERTY STUFF*/
 .property{
 
 	border: dashed darkblue;
@@ -9,7 +10,60 @@
 .propertyInfoArea{
 
 	border: dashed darkred;
+	height:40vh;
+
+}
+
+.googleMaps{
+
+	margin: 0;
+	padding: 0;
+
+}
+
+.singlePagePropInfo{
+
+	font-size: 4vh;
+
+}
+
+
+/*BUTTONS*/
+
+.buttonsSingleProperty{
+
+	margin:0;
+	padding:0;
+	height:100%;
+	border: dashed black;
+	text-align: center;
+
+
+}
+
+.saveInvest{
+	margin: 0;
+	padding:0;
+	height:4vh;
+	width:20vh;
+
+
+}
+
+/*FORM FOR INVESTING*/
+
+
+
+#formToInvest{
+
+	display:none;
+	margin:0;
+	padding:0;
 
 
 
 }
+
+
+
+
