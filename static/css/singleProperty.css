@@ -1,7 +1,7 @@
 /*PROPERTY STUFF*/
 .property{
 
-	border: dashed darkblue;
+
 	
 
 
@@ -9,8 +9,24 @@
 
 .propertyInfoArea{
 
-	border: dashed darkred;
 	height:40vh;
+
+}
+
+.titles{
+	border-bottom-color: lightgrey 10px;
+	border-bottom-width: 20px;
+	text-align: center;
+	text-decoration: underline;
+	/*border: dashed black;*/
+	
+
+
+}
+
+.titles h3{
+
+	color: #53B6C6;
 
 }
 
@@ -18,6 +34,7 @@
 
 	margin: 0;
 	padding: 0;
+	margin-top: 15px;
 
 }
 
@@ -35,8 +52,14 @@
 	margin:0;
 	padding:0;
 	height:100%;
-	border: dashed black;
 	text-align: center;
+
+
+}
+
+.buttonsSingleProperty span{
+
+		font-size: 5vh;
 
 
 }
@@ -49,6 +72,21 @@
 
 
 }
+
+.
+
+#investmentAmount{
+
+
+}
+
+.viewAccountToSee{
+	font-size: 3vh;
+	text-decoration: underline;
+
+}
+
+
 
 /*FORM FOR INVESTING*/
 

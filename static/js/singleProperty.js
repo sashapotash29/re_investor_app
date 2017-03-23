@@ -48,24 +48,25 @@ function initMap() {
 const save_button = document.getElementById('saveButton')
 const invest_button = document.getElementById('investButton')
 
-save_button.addEventListener('click', function(){
-	console.log("we are here")
-	save_button.style.display = "none"
-	var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    }
-    id = document.getElementById('propertyInfoUl').dataset['id']
-    xmlHttp.open("get", "/save_property/"+id, true);
-    xmlHttp.send();
 
-
-
-
-});
+if (save_button){
+  save_button.addEventListener('click', function(){
+  	console.log("we are here")
+  	save_button.style.display = "none"
+  	var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function() { 
+          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+              callback(xmlHttp.responseText);
+      }
+      id = document.getElementById('propertyInfoUl').dataset['id']
+      xmlHttp.open("get", "/save_property/"+id, true);
+      xmlHttp.send();
+  });
+};
 
 var investButtonInForm = document.getElementById('formToInvest')
+
+if(invest_button){
 
 invest_button.addEventListener('click', function(){
 	console.log("we are here")
@@ -80,8 +81,5 @@ invest_button.addEventListener('click', function(){
 
     invest_button.style.display = "none"
 	
-
-
-
-
-});
+  });
+};
