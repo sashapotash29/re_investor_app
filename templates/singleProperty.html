@@ -6,11 +6,17 @@
 
 
 {% block body %}
-
+	<div class="row titlesArea">
+		<div class="col s4 titles">
+			<h3>Google Map</h3>
+		</div>
+		<div class="col s8 titles">
+			<h3>Property Facts</h3>
+		</div>
+	</div>
 
 	<div class="row property">
 		<div class="col s4 propertyInfoArea googleMaps" data-lat="{{lat}}" data-long="{{long}}">
-			GOOGLE MAPS
 		</div>
 		<div class="col s8 propertyInfoArea">
 			<ul id = "propertyInfoUl" class="singlePagePropInfo" data-id={{property.id}}>
@@ -36,15 +42,33 @@
 
 	</div>
 	<div class="row buttonsSP">
-		<div class="col s6 buttonsSingleProperty">
-			<input class = "saveInvest" type='submit' value="Save" id="saveButton">
-		</div>
-		<div class="col s6 buttonsSingleProperty">
-			<input class = "saveInvest" type='submit' value="Invest" id="investButton">
-		</div>
+		{% if check %}
+			<div class="col s4 buttonsSingleProperty">
+				<a class = "viewAccountToSee" href="/account"> View your Account to see </a>
+			</div>
+				{% if check.investment_value == 0 %}
+					<div class="col s8 buttonsSingleProperty">
+						<input class = "saveInvest" type='submit' value="Invest" id="investButton">
+					</div>
+				{% else %}
+					<div class="col s8 buttonsSingleProperty">
+						<span id="investmentAmount"> Amount you have contributed: ${{check.investment_value}}</span>
+					</div>
+				{% endif %}
+			
+		{% else %}
+			<div class="col s4 buttonsSingleProperty">
+				<input class = "saveInvest" type='submit' value="Save" id="saveButton">
+			</div>
+			<div class="col s8 buttonsSingleProperty investFormForLater">
+				<input class = "saveInvest" type='submit' value="Invest" id="investButton">
+			</div>
+		{% endif %}
 	</div>
+
 	<div class="row investFormArea">
-		<div class="col s6 formArea"></div>
+		<div class="col s6 formArea">
+		</div>
 		<div class="col s6 formArea">
 			<form action="/invest_property/{{property.id}}" method="POST" id="formToInvest">
 				<input type="text" placeholder="Insert amount you wish to invest" name="investmentAmount">
@@ -52,10 +76,6 @@
 			</form>
 		</div>
 	</div>
-
-
-
-
 
 	
 {% endblock %}
