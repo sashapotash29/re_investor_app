@@ -17,7 +17,7 @@
 	border-bottom-color: lightgrey 10px;
 	border-bottom-width: 20px;
 	text-align: center;
-	text-decoration: underline;
+
 	/*border: dashed black;*/
 	
 
@@ -27,6 +27,7 @@
 .titles h3{
 
 	color: #53B6C6;
+	text-decoration: underline;
 
 }
 
@@ -35,7 +36,7 @@
 	margin: 0;
 	padding: 0;
 	margin-top: 15px;
-
+	border: solid black;
 }
 
 .singlePagePropInfo{
@@ -73,10 +74,19 @@
 
 }
 
-.
+.saveInvest:hover{
+
+	background-color: lightblue;
+}
 
 #investmentAmount{
+	color: darkgreen;
+	font-size: 3vh;
 
+}
+#investmentAmountMessage{
+	font-size: 3vh;
+	font-weight: bold;
 
 }
 
@@ -102,6 +112,43 @@
 
 }
 
+/*OTHER INVESTORS*/
 
+.investorsArea{
+	border-top: solid grey;
+	border-bottom: solid grey;
+
+
+}
+
+.investorOnPropertyUL{
+
+	font-size:2vh;
+	list-style: square;
+	display: flex;
+
+}
+
+.investorOnProperty{
+	justify-content: center;
+	text-align: center;
+	margin: 3%;
+	background-color: lightyellow;
+	border: solid 1px grey;
+/*	border: dashed black;*/
+
+}
+
+.investedAmountP{
+	margin: 2%;
+
+
+}
+
+.moneys{
+
+	color: darkgreen;
+
+}
 
 

@@ -20,23 +20,24 @@
 		</div>
 		<div class="col s8 propertyInfoArea">
 			<ul id = "propertyInfoUl" class="singlePagePropInfo" data-id={{property.id}}>
-				<li> Address: {{property.address}}, {{property.city}}, {{property.state}}, {{property.zipcode}} </li>
+				<li> <span style="font-weight:bold;">Address: </span> {{property.address}}, {{property.city}}, {{property.state}}, {{property.zipcode}} </li>
 				{% if property.bedrooms == 0 %}
-				<li> Bedrooms: Information Unavailabe </li>
+				<li> <span style="font-weight:bold;">Bedrooms: </span> Information Unavailabe </li>
 				{% else %}
-				<li> Bedrooms: {{property.bedrooms}} </li>
+				<li> <span style="font-weight:bold;">Bedrooms: </span>{{property.bedrooms}} </li>
 				{% endif %}
 				{% if property.bathrooms == 0 %}
-				<li> Bathrooms: Information Unavailabe </li>
+				<li> <span style="font-weight:bold;">Bathrooms: </span>Information Unavailabe </li>
 				{% else %}
-				<li> Bathrooms: {{property.bathrooms}} </li>
+				<li> <span style="font-weight:bold;">Bathrooms: </span>{{property.bathrooms}} </li>
 				{% endif %}
-				<li> Price: ${{property.current_price}} </li>
+				<li> <span style="font-weight:bold;">Price: </span>${{property.current_price}} </li>
 				{% if property.sq_ft == 0 %}
-				<li> Square Footage: Information Unavailabe </li>
+				<li> <span style="font-weight:bold;">Square Footage: </span> Information Unavailabe </li>
 				{% else %}
-				<li> Square Footage: {{property.sq_ft}} </li>
+				<li> <span style="font-weight:bold;">Square Footage: </span>{{property.sq_ft}}ft </li>
 				{% endif %}
+				<li><span style="font-weight:bold;">Current Level of Investment Reached: </span>${{current_investment_value}}</li>
 			</ul>
 		</div>
 
@@ -47,12 +48,13 @@
 				<a class = "viewAccountToSee" href="/account"> View your Account to see </a>
 			</div>
 				{% if check.investment_value == 0 %}
-					<div class="col s8 buttonsSingleProperty">
+					<div class="col s8 buttonsSingleProperty saveArea">
 						<input class = "saveInvest" type='submit' value="Invest" id="investButton">
 					</div>
 				{% else %}
 					<div class="col s8 buttonsSingleProperty">
-						<span id="investmentAmount"> Amount you have contributed: ${{check.investment_value}}</span>
+						<span id="investmentAmountMessage"> Amount you have contributed: </span>
+						<span id="investmentAmount">${{check.investment_value}}</span>
 					</div>
 				{% endif %}
 			
@@ -74,6 +76,22 @@
 				<input type="text" placeholder="Insert amount you wish to invest" name="investmentAmount">
 				<input type="submit" Value= "Invest">
 			</form>
+		</div>
+	</div>
+
+	<div class="row investors">
+		<div class="col s12 investorsArea">
+			<h3> Other Investors </h3>
+			<ul class="investorOnPropertyUL">
+			{% if investors %}
+			{% for investor in investors %}
+				<li class="investorOnProperty"> User: <a>{{investor['name']}}</a>   <p class="investedAmountP"> Amount Invested: <span class="moneys">${{investor['amount']}} </span> </p>
+				</li>
+			{% endfor %}
+			{% else %}
+				<li class="investorOnProperty"> No Investors Currently </li>
+			{% endif %}
+			</ul>
 		</div>
 	</div>
 

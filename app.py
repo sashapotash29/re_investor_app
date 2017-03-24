@@ -27,6 +27,18 @@ db = SQLAlchemy(app)
 
 bcrypt = Bcrypt(app)
 
+def grab_other_investors(prop_id):
+	reference_list = db.session.query(Reference).filter(Reference.prop_id==prop_id, Reference.user_id!=session['user_id']).all()
+	list_of_investors = []
+	for reference in reference_list:
+		investment_value = reference.investment_value
+		investor = User.query.filter_by(id = reference.user_id).first()
+		investor_obj = {"name": investor.username, "amount": investment_value}
+		list_of_investors.append(investor_obj)
+	return list_of_investors
+
+
+
 
 def grab_saved_and_invest_property():
 	user_reference_list = Reference.query.filter_by(user_id=session['user_id']).all()
@@ -106,6 +118,18 @@ def grab_home_props():
 		properties.append(prop)
 	print(properties)
 	return properties
+
+
+def property_current_investment(prop_id):
+	reference_obj_list = Reference.query.filter_by(prop_id= prop_id).all()
+	total_investment_amount = 0
+	if reference_obj_list:
+		for reference in reference_obj_list:
+			total_investment_amount += reference.investment_value
+		return total_investment_amount
+	else:
+		return total_investment_amount
+
 
 
 
@@ -209,19 +233,19 @@ def search():
 		print(properties)
 		return render_template('home.html',
 		properties = properties,
-		header="Search based on: " + '"'+search_word +'"')
+		header="Search Results based on: " + '"'+search_word +'"')
 	if "brooklyn" in search_word.lower():
 		properties = Property.query.filter_by(city = "Brooklyn").all()
 		print(properties)
 		return render_template('home.html',
 		properties = properties,
-		header="Search based on: " + '"'+search_word +'"')
+		header="Search Results based on: " + '"'+search_word +'"')
 	if "jersey" in search_word.lower():
 		properties = Property.query.filter_by(city = "Jersey City").all()
 		print(properties)
 		return render_template('home.html',
 		properties = properties,
-		header="Search based on: " + '"'+search_word +'"')
+		header="Search Results based on: " + '"'+search_word +'"')
 	else:
 		return render_template('home.html',
 		properties = grab_home_props(),
@@ -240,20 +264,28 @@ def show_single_property_page(property_info):
 		if check != None:
 			print("check route")
 			coordinates = decompose_coordinates(result.coordinates)
+			investors = grab_other_investors(result.id)
+			current_investment_value = property_current_investment(result.id)
 			return render_template('singleProperty.html',
 				property = result,
 				uhoh=uhoh,
 				lat = coordinates[0],
 				long = coordinates[1],
-				check = check)
+				check = check,
+				investors = investors,
+				current_investment_value= current_investment_value)
 		else:
 			print("nonCheck route")
 			coordinates = decompose_coordinates(result.coordinates)
+			investors = grab_other_investors(result.id)
+			current_investment_value = property_current_investment(result.id)
 			return render_template('singleProperty.html',
 				property = result,
 				uhoh=uhoh,
 				lat = coordinates[0],
-				long = coordinates[1])
+				long = coordinates[1],
+				investors = investors,
+				current_investment_value = current_investment_value)
 	else:
 		return render_template('home.html',
 			properties = grab_home_props(),
