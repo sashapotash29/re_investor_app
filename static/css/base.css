@@ -1,7 +1,19 @@
+.wrapEverything{
+	margin:0;
+
+
+}
+.bodyContent{
+
+	margin:0;
+
+}
+
+
 .navPortion{
 
 	height:15vh;
-	background-color: #53B6C6;
+	background-color: #E4B363;
 	margin:0;
 	padding:0;
 
@@ -12,6 +24,7 @@
 
 	height:100vh;
 	margin:0;
+	margin-bottom: 0;
 	padding:0;
 	overflow-y: auto;
 
@@ -20,7 +33,7 @@
 
 .sidePortion{
 
-	background-color: #DCE2C8;
+	background-color: #BEBFC1;
 	border:none;
 
 
@@ -40,7 +53,7 @@
 	margin:0;
 	padding:0;
 	height:100%;
-	background-color: #53B6C6;
+	background-color: #E4B363;
 
 
 }
@@ -51,21 +64,25 @@
 	height:100%;
 	text-align: center;
 	padding:0;
+	display:flex;
+	align-items: center;
+	justify-content: center;
 	
 }
 
 .aTagNav{
 	padding:0;
 	margin:0;
-	height:100%;
-	font-size: 8vh;
+	/*height:100%;*/
+	font-size: 4vh;
 	color:white;
-	width:100%;
+	/*width:100%;*/
 }
 
 .aTagNav:hover{
-	background-color: white;
-	color:#53B6C6;
+	/*background-color: white;*/
+	color:lightblue;
+	text-decoration: underline;
 
 
 
@@ -85,6 +102,7 @@
 	height:100%;
 	font-size: 8vh;
 	color: white;
+	font-family: cursive;
 
 
 
@@ -129,7 +147,7 @@
 }
 
 .searchButton:hover{
-	background-color: blue;
+	background-color: lightblue;
 
 
 }

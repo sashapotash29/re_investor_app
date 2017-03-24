@@ -8,28 +8,28 @@
 
 {% block body %}
 	<div class="row">
-		<div class="col s4" data-lat="{{lat}}" data-long="{{long}}">
+		<div class="col s3" data-lat="{{lat}}" data-long="{{long}}">
 			<div class="hypotheticalProfilePic">
 				<p> Profile Picture Coming Soon </p>
 			</div>
 		</div>
-		<div class="col s4">
+		<div class="col s3 userInfo">
 			
 			<form action="/account" method="POST"> 
-				<h4> First Name </h4>
+				<h5> First Name </h5>
 				<input type="text" value = "{{user.first_name}}" name="firstNameField">
-				<h4> Last Name </h4>
+				<h5> Last Name </h5>
 				<input type="text" value = "{{user.last_name}}" name="lastNameField">
-				<h4> Description </h4>
+				<h5> Description </h5>
 				<input type="text" value = "Description Here" name="descriptionField">
 				<p>
 				To change your personal info, fill in the boxes above and then click "Update Info"
 				</p>
-				<input type="submit" value="Update Info">
+				<input  class="submitNewUserInfo" type="submit" value="Update Info">
 
 			</form>
 		</div>
-		<div class="col s4 propertyRightSide">
+		<div class="col s6 propertyRightSide">
 			<ul class="accountPagePropertyList">
 			{% for property in properties %}
 				<li>
@@ -37,23 +37,24 @@
 			            <div class="card-content white-text">
 			              <span class="card-title">{{property.address}} {{property.city}} {{property.state}} {{property.zipcode}}</span>
 			              <ul>
-			              	{% if property.bedrooms == 0 %}
-							<li> Bedrooms: Information Unavailabe </li>
+			              	<li> <span style="font-weight:bold;">Address: </span> {{property.address}}, {{property.city}}, {{property.state}}, {{property.zipcode}} </li>
+							{% if property.bedrooms == 0 %}
+							<li> <span style="font-weight:bold;">Bedrooms: </span> Information Unavailabe </li>
 							{% else %}
-							<li> Bedrooms: {{property.bedrooms}} </li>
+							<li> <span style="font-weight:bold;">Bedrooms: </span>{{property.bedrooms}} </li>
 							{% endif %}
 							{% if property.bathrooms == 0 %}
-							<li> Bathrooms: Information Unavailabe </li>
+							<li> <span style="font-weight:bold;">Bathrooms: </span>Information Unavailabe </li>
 							{% else %}
-							<li> Bathrooms: {{property.bathrooms}} </li>
+							<li> <span style="font-weight:bold;">Bathrooms: </span>{{property.bathrooms}} </li>
 							{% endif %}
-							<li> Price: ${{property.current_price}} </li>
+							<li> <span style="font-weight:bold;">Price: </span>${{property.current_price}} </li>
 							{% if property.sq_ft == 0 %}
-							<li> Square Footage: Information Unavailabe </li>
+							<li> <span style="font-weight:bold;">Square Footage: </span> Information Unavailabe </li>
 							{% else %}
-							<li> Square Footage: {{property.sq_ft}}ft </li>
+							<li> <span style="font-weight:bold;">Square Footage: </span>{{property.sq_ft}}ft </li>
 							{% endif %}
-							</li>
+							<li> <a href="/property/{{property.id}}"> Click to see other Investors </a> </li>
 			            </ul>
 			            </div>
 			            <div class="card-action">

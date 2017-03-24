@@ -17,23 +17,24 @@
             <div class="card-content white-text">
               <span class="card-title">{{property.address}} {{property.city}} {{property.state}} {{property.zipcode}}</span>
               <ul>
-                  {% if property.bedrooms == 0 %}
-                  <li> Bedrooms: Information Unavailabe </li>
-                  {% else %}
-                  <li> Bedrooms: {{property.bedrooms}} </li>
-                  {% endif %}
-                  {% if property.bathrooms == 0 %}
-                  <li> Bathrooms: Information Unavailabe </li>
-                  {% else %}
-                  <li> Bathrooms: {{property.bathrooms}} </li>
-                  {% endif %}
-                  <li> Price: ${{property.current_price}} </li>
-                  {% if property.sq_ft == 0 %}
-                  <li> Square Footage: Information Unavailabe </li>
-                  {% else %}
-                  <li> Square Footage: {{property.sq_ft}}ft </li>
-                  {% endif %}
-                  </li>
+                <li> <span style="font-weight:bold;">Address: </span> {{property.address}}, {{property.city}}, {{property.state}}, {{property.zipcode}} </li>
+                {% if property.bedrooms == 0 %}
+                <li> <span style="font-weight:bold;">Bedrooms: </span> Information Unavailabe </li>
+                {% else %}
+                <li> <span style="font-weight:bold;">Bedrooms: </span>{{property.bedrooms}} </li>
+                {% endif %}
+                {% if property.bathrooms == 0 %}
+                <li> <span style="font-weight:bold;">Bathrooms: </span>Information Unavailabe </li>
+                {% else %}
+                <li> <span style="font-weight:bold;">Bathrooms: </span>{{property.bathrooms}} </li>
+                {% endif %}
+                <li> <span style="font-weight:bold;">Price: </span>${{property.current_price}} </li>
+                {% if property.sq_ft == 0 %}
+                <li> <span style="font-weight:bold;">Square Footage: </span> Information Unavailabe </li>
+                {% else %}
+                <li> <span style="font-weight:bold;">Square Footage: </span>{{property.sq_ft}}ft </li>
+                {% endif %}
+                <li> <a href="/property/{{property.id}}"> Click to see other Investors </a> </li>
               </ul>
             </div>
             <div class="card-action">
